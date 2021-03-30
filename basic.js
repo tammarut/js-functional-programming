@@ -163,3 +163,51 @@ const myOlderPersons = myMap(persons, (person) => ({
   age: person.age * 2,
 }));
 console.log("✅ myOlderPersons :", myOlderPersons);
+
+// 👑 5. Closures
+function outer() {
+  const name = 'John outer';
+
+  return function inner() {
+    console.log(':fire:Outer name:', name);
+  };
+}
+
+const innerFunc = outer();
+innerFunc();
+
+// 🎉 Benefit
+// 1. Data privacy
+
+  let counter = 0;
+  return function times() {
+    counter += 1;
+    console.log('Counter:', counter);
+  };
+}
+
+const times = createTimes();
+times();
+times();
+
+// 2. Stateful funciton
+// function addFive(input) {
+//   return input + 5;
+// }
+
+// function addTen(input) {
+//   return input + 10;
+// }
+
+function createAdd(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+
+const addFive = createAdd(5)
+const addTen = createAdd(10)
+
+console.log('Add Five:', addFive(10));
+console.log('Add Ten:', addTen(10));
+
